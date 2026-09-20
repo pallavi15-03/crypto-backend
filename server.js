@@ -1,3 +1,5 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -7,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const caseRoutes = require("./routes/caseRoutes");
 const investigationRoutes = require("./routes/investigationRoutes");
 const errorMiddleware = require("./middleware/errorMiddleware");
+const blockchainRoutes = require("./routes/blockchainRoutes");
 
 dotenv.config();
 
@@ -20,6 +23,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/cases", caseRoutes);
 app.use("/api/investigations", investigationRoutes);
+app.use("/api/blockchain", blockchainRoutes);
 
 // Basic route
 app.get("/", (req, res) => {
